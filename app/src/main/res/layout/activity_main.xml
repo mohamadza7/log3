@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/username"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:backgroundTint="@color/black"
+    android:background="@color/black">
+
+    <EditText
+        android:id="@+id/username1"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
+
+        android:layout_marginStart="128dp"
+        android:layout_marginBottom="76dp"
+        android:hint="username"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/password1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/password1"
+        android:layout_width="152dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="60dp"
+        android:hint="password"
+        android:textColor="@color/white"
+
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btnlogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="324dp"
+        android:layout_height="48dp"
+
+
+        android:layout_marginBottom="65dp"
+
+        android:background="@empty"
+        android:backgroundTint="@color/red"
+        android:backgroundTintMode="add"
+        android:onClick="login"
+        android:text="log in"
+        app:layout_constraintBottom_toTopOf="@+id/btnsignin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnsignin"
+        android:layout_width="318dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="246dp"
+        android:backgroundTint="@color/red"
+        android:text="sign up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

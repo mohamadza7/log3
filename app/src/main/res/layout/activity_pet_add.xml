@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PetAdd">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="173dp"
+        android:layout_height="23dp"
+        android:text="gender"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="299dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="173dp"
+        android:layout_height="23dp"
+        android:text="discription"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="178dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="173dp"
+        android:layout_height="23dp"
+        android:text="contact number"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="173dp"
+        android:layout_height="23dp"
+        android:text="price"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="256dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="231dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="4dp"
+        android:text="Add your pet"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="173dp"
+        android:layout_height="23dp"
+        android:text="age"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="173dp"
+        android:layout_height="23dp"
+        android:text="location"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton2"
+        android:layout_width="84dp"
+        android:layout_height="45dp"
+        android:text="male"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="322dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton3"
+        android:layout_width="84dp"
+        android:layout_height="45dp"
+        android:text="female"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="367dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
