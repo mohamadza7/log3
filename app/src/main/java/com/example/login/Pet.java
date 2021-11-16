@@ -13,9 +13,22 @@ public class Pet {
     private String photo;
     private boolean gender;
     private String age;
-    private String discription;
+    private String description;
 
+    public Pet() {
+    }
 
+    public Pet(String contactnum, int price, String location, String kind, PetCategory category, String photo, boolean gender, String age, String description) {
+        this.contactnum = contactnum;
+        this.price = price;
+        this.location = location;
+        this.kind = kind;
+        this.category = category;
+        this.photo = photo;
+        this.gender = gender;
+        this.age = age;
+        this.description = description;
+    }
 
     public String getContactnum() {
         return contactnum;
@@ -81,32 +94,18 @@ public class Pet {
         this.age = age;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
-    }
-
-    public Pet(int rating, String contactnum, int price, String location, String kind, PetCategory category, String photo, boolean gender, String age, String discription) {
-       
-        this.contactnum = contactnum;
-        this.price = price;
-        this.location = location;
-        this.kind = kind;
-        this.category = category;
-        this.photo = photo;
-        this.gender = gender;
-        this.age = age;
-        this.discription = discription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public String toString() {
         return "Pet{" +
-
-                ", contactnum='" + contactnum + '\'' +
+                "contactnum='" + contactnum + '\'' +
                 ", price=" + price +
                 ", location='" + location + '\'' +
                 ", kind='" + kind + '\'' +
@@ -114,7 +113,7 @@ public class Pet {
                 ", photo='" + photo + '\'' +
                 ", gender=" + gender +
                 ", age='" + age + '\'' +
-                ", discription='" + discription + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
