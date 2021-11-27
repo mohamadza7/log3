@@ -6,8 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".PetAdd">
 
+    <EditText
+        android:id="@+id/etcontactnumber"
+        android:layout_width="171dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:hint="contact number"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913" />
+
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/gendertextview"
         android:layout_width="173dp"
         android:layout_height="47dp"
         android:text="gender"
@@ -16,7 +28,7 @@
         tools:layout_editor_absoluteY="343dp" />
 
     <EditText
-        android:id="@+id/textView4"
+        android:id="@+id/etdisc"
         android:layout_width="171dp"
         android:layout_height="50dp"
         android:hint="description"
@@ -26,7 +38,7 @@
         tools:layout_editor_absoluteY="206dp" />
 
     <EditText
-        android:id="@+id/textView6"
+        android:id="@+id/etprice"
         android:layout_width="171dp"
         android:layout_height="50dp"
         android:hint="price"
@@ -50,7 +62,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textView3"
+        android:id="@+id/etage"
         android:layout_width="171dp"
         android:layout_height="50dp"
 
@@ -59,7 +71,7 @@
         tools:layout_editor_absoluteY="136dp" />
 
     <EditText
-        android:id="@+id/textView8"
+        android:id="@+id/etlocation"
         android:layout_width="168dp"
         android:layout_height="47dp"
         android:hint="location"
@@ -84,11 +96,20 @@
         tools:layout_editor_absoluteY="435dp" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spkind"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="516dp" />
+        tools:layout_editor_absoluteY="571dp" />
+
+    <TextView
+        android:id="@+id/textviewkind"
+        android:layout_width="155dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="24dp"
+        android:text="kind"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="533dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
