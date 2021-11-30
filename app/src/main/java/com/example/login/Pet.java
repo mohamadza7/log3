@@ -6,9 +6,9 @@ enum PetCategory{
 public class Pet {
 
     private String contactnum;
-    private int price;
+    private String price;
     private String location;
-    private String kind;
+
     private PetCategory category;
     private String photo;
     private boolean gender;
@@ -18,11 +18,11 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(String contactnum, int price, String location, String kind, PetCategory category, String photo, boolean gender, String age, String description) {
+    public Pet(String contactnum, String price, String location, PetCategory category, String photo, boolean gender, String age, String description) {
         this.contactnum = contactnum;
         this.price = price;
         this.location = location;
-        this.kind = kind;
+
         this.category = category;
         this.photo = photo;
         this.gender = gender;
@@ -38,11 +38,11 @@ public class Pet {
         this.contactnum = contactnum;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -54,13 +54,7 @@ public class Pet {
         this.location = location;
     }
 
-    public String getKind() {
-        return kind;
-    }
 
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
 
     public PetCategory getCategory() {
         return category;
@@ -108,7 +102,7 @@ public class Pet {
                 "contactnum='" + contactnum + '\'' +
                 ", price=" + price +
                 ", location='" + location + '\'' +
-                ", kind='" + kind + '\'' +
+
                 ", category=" + category +
                 ", photo='" + photo + '\'' +
                 ", gender=" + gender +

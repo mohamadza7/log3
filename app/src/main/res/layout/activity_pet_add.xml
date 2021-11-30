@@ -6,17 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".PetAdd">
 
+
     <EditText
         android:id="@+id/etcontactnumber"
         android:layout_width="171dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:hint="contact number"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.913" />
+        app:layout_constraintVertical_bias="0.831" />
 
     <TextView
         android:id="@+id/gendertextview"
@@ -79,21 +80,25 @@
         tools:layout_editor_absoluteX="32dp"
         tools:layout_editor_absoluteY="78dp" />
 
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="84dp"
-        android:layout_height="45dp"
-        android:text="male"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="390dp" />
+    <RadioGroup
+        android:layout_width="108dp"
+        android:layout_height="89dp"
+        android:layout_marginEnd="276dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="390dp">
 
-    <RadioButton
-        android:id="@+id/radioButton3"
-        android:layout_width="84dp"
-        android:layout_height="45dp"
-        android:text="female"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="435dp" />
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="84dp"
+            android:layout_height="45dp"
+            android:text="female" />
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="male" />
+    </RadioGroup>
 
     <Spinner
         android:id="@+id/spkind"
@@ -101,15 +106,27 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="571dp" />
+        tools:layout_editor_absoluteY="518dp" />
 
     <TextView
         android:id="@+id/textviewkind"
+        android:textColorHint="@color/black"
         android:layout_width="155dp"
         android:layout_height="38dp"
         android:layout_marginStart="24dp"
-        android:text="kind"
+        android:hint="category"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="533dp" />
+        tools:layout_editor_absoluteY="480dp" />
+
+    <ImageView
+        android:id="@+id/ivphotoPetAdd"
+        android:layout_width="114dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

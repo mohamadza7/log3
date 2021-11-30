@@ -34,7 +34,7 @@ public class PetAdd extends AppCompatActivity {
 
 
     private static final String TAG = "PetAddActivity";
-    private EditText etlocation, etdiscreption,etage, etPhone;
+    private EditText etlocation, etdiscreption,etage, etPhone,etprice,etgender;
     private Spinner spkind;
     private ImageView ivPhoto;
     private FireBaseServices fbs;
@@ -52,6 +52,8 @@ public class PetAdd extends AppCompatActivity {
 
     private void connectComponents() {
         etlocation= findViewById(R.id.etlocation);
+        etgender=findViewById(R.id.)
+        etprice=findViewById(R.id.etprice);
         etdiscreption= findViewById(R.id.etdisc);
        etage = findViewById(R.id.etage);
         etPhone = findViewById(R.id.etcontactnumber);
@@ -64,9 +66,10 @@ public class PetAdd extends AppCompatActivity {
 
     public void add(View view) {
         // check if any field is empty
-        String location, description, age, phone, kind, photo;
+        String location, description, age, phone, kind, photo,price;
         location= etlocation.getText().toString();
         description =  etdiscreption.getText().toString();
+        price=etprice.toString();
        age =etage.getText().toString();
         phone = etPhone.getText().toString();
         kind= spkind.getSelectedItem().toString();
@@ -74,16 +77,16 @@ public class PetAdd extends AppCompatActivity {
             photo = "no_image";
         else photo = storageReference.getDownloadUrl().toString();
 
-        if location.trim().isEmpty() || description.trim().isEmpty() || age.trim().isEmpty() ||
+        if (location.trim().isEmpty() || description.trim().isEmpty() || age.trim().isEmpty() ||
                 phone.trim().isEmpty() || kind.trim().isEmpty() || photo.trim().isEmpty())
         {
             Toast.makeText(this, R.string.err_fields_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Pet pet = new Pet(location, description,age, .valueOf(category), photo, phone);
+        Pet pet = new Pet(phone,price,location,PetCategory.valueOf(kind) photo,PetCategory.valueOf(kind), photo, phone);
         fbs.getFire().collection("restaurants")
-                .add(rest)
+                .add(pet)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {

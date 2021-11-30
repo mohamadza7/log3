@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">log in</string>
+    <string name="err_fields_empty">some fields are empty</string>
 </resources>
