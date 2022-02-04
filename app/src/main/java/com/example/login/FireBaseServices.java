@@ -19,7 +19,7 @@ public class FireBaseServices {
     }
 
     public FirebaseFirestore getFire() {
-        return firestore;
+        return firestore  ;
     }
 
     public FirebaseStorage getStorage() {
