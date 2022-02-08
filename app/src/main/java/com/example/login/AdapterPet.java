@@ -14,28 +14,38 @@ import java.util.List;
 
 public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
 
+
     private List<Pet> mData;
     private LayoutInflater mInflater;
-    private  AdapterPet.ItemClickListener mClickListener;
+    private AdapterPet.ItemClickListener mClickListener;
+    private final OnClickListener mOnClickListener = new MyOnClickListener();
+
+    @Override
+    public MyViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.myview, parent, false);
+        view.setOnClickListener(mOnClickListener);
+        return new MyViewHolder(view);
+    }
 
     // data is passed into the constructor
     AdapterPet(Context context, List<Pet> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+
     }
 
     // inflates the row layout from xml when needed
     @Override
-    public  AdapterPet.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterPet.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.row, parent, false);
-        return new  AdapterPet.ViewHolder(view);
+        return new AdapterPet.ViewHolder(view);
     }
 
     // binds the data to the TextView in each row
     @Override
-    public void onBindViewHolder( AdapterPet.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterPet.ViewHolder holder, int position) {
         Pet rest = mData.get(position);
-        holder.tvkind.setText(rest.getName());
+        holder.tvkind.setText(rest.getPhoto());
         //holder.ivPhoto.setImageDrawable(rest.getPhoto());
     }
 
@@ -71,7 +81,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     }
 
     // allows clicks events to be caught
-    void setClickListener( AdapterPet.ItemClickListener itemClickListener) {
+    void setClickListener(AdapterPet.ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
@@ -79,4 +89,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
-}
+
+
+
+

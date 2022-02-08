@@ -48,7 +48,7 @@ public class AllPet extends AppCompatActivity {
                                 pets.add(document.toObject(Pet.class));
                             }
                         } else {
-                            Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
+                            Log.e("AllPetActivity: readData()", "Error getting documents.", task.getException());
                         }
                     }
                 });
