@@ -1,6 +1,7 @@
 package com.example.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.text.BreakIterator;
 import java.util.List;
 
@@ -17,21 +19,28 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
 
     private List<Pet> mData;
     private LayoutInflater mInflater;
-    private AdapterPet.ItemClickListener mClickListener;
-    private final OnClickListener mOnClickListener = new MyOnClickListener();
 
-    @Override
-    public MyViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.myview, parent, false);
-        view.setOnClickListener(mOnClickListener);
-        return new MyViewHolder(view);
-    }
+    private Context context;
 
-    // data is passed into the constructor
-    AdapterPet(Context context, List<Pet> data) {
+
+    private final AdapterPet.ItemClickListener mClickListener = new ItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            // get restaurant data
+           Pet pet = mData.get(position);
+            // upload restaurant data
+            // goto details activity
+            Intent i = new Intent(context,PetDetailsActivity.class);
+            i.putExtra("rest", (Serializable)pet);
+            context.startActivity(i);
+        }
+    };
+
+
+   AdapterPet(Context context, List<Pet> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
-
+        this.context = context;
     }
 
     // inflates the row layout from xml when needed
@@ -44,8 +53,8 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(AdapterPet.ViewHolder holder, int position) {
-        Pet rest = mData.get(position);
-        holder.tvkind.setText(rest.getPhoto());
+        Pet pet = mData.get(position);
+        holder.tvName.setText(pet.getName());
         //holder.ivPhoto.setImageDrawable(rest.getPhoto());
     }
 
@@ -58,14 +67,13 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public BreakIterator tvkind;
         TextView tvName;
         ImageView ivPhoto;
 
         ViewHolder(View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(R.id.spkind);
-            ivPhoto = itemView.findViewById(R.id.ivphotoPetAdd);
+            tvName = itemView.findViewById(R.id.detailsrow);
+            ivPhoto = itemView.findViewById(R.id.imageViewrow);
             itemView.setOnClickListener(this);
         }
 
@@ -76,20 +84,21 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     }
 
     // convenience method for getting data at click position
-    Pet getItem(int id) {
+   Pet getItem(int id) {
         return mData.get(id);
     }
 
     // allows clicks events to be caught
-    void setClickListener(AdapterPet.ItemClickListener itemClickListener) {
+    /*
+    void setClickListener(AdapterRestaurant.ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
-    }
+    }*/
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
-
+}
 
 
 
