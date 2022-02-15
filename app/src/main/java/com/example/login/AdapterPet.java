@@ -54,8 +54,8 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     @Override
     public void onBindViewHolder(AdapterPet.ViewHolder holder, int position) {
         Pet pet = mData.get(position);
-        holder.tvName.setText(pet.getName());
-        //holder.ivPhoto.setImageDrawable(rest.getPhoto());
+        holder.tvName.setText(pet.getCategory());
+       holder.ivPhoto.setImageDrawable((pet.getPhoto()));
     }
 
     // total number of rows
@@ -98,7 +98,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
-}
+   }
 
 
 
