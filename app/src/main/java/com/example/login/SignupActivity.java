@@ -3,6 +3,7 @@ package com.example.login;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -37,13 +38,12 @@ public class SignupActivity extends AppCompatActivity {
         String password = etpasswordsignup.getText().toString();
 
 
-
         if (username.trim().isEmpty() || password.trim().isEmpty() || confirmpass.trim().isEmpty()) {
 
             Toast.makeText(this, "Username or password is missing!", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!utils.emailIsTrue(this, username) || !utils.validatePassword(this,password)) {
+        if (!utils.emailIsTrue(this, username) || !utils.validatePassword(this, password)) {
             Toast.makeText(this, "Username or password is not valid!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -53,21 +53,23 @@ public class SignupActivity extends AppCompatActivity {
         }
 
 
-        authsignup.createUserWithEmailAndPassword(username, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // TODO: commands if successful
-                        } else {
+
+            authsignup.createUserWithEmailAndPassword(username, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Intent i = new Intent(SignupActivity.this, AllPet.class);
+                                startActivity(i);
+                            } else {
 
 
-                            Toast.makeText(SignupActivity.this, "Username or password is empty!", Toast.LENGTH_SHORT).show();
-                            return;
+                                Toast.makeText(SignupActivity.this, "Username or password is empty!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
-                    }
-                });
+                    });
 
+        }
     }
-}
 

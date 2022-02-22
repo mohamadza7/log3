@@ -1,21 +1,23 @@
 package com.example.login;
 
+import android.graphics.drawable.Drawable;
+
+import java.io.Serializable;
+
 enum PetCategory{
     dogs,cats,horses,birds
 }
 
-public class Pet {
+public class Pet implements Serializable {
 
+    private String description;
+    private PetCategory category;
+    private String photo;
     private String contactnum;
     private String price;
     private String location;
-
-
-    private PetCategory category;
-    private String photo;
     private boolean gender;
     private String age;
-    private String description;
 
     public Pet(String contactnum, String price, String location, PetCategory category, String photo, boolean gender, String age, String description) {
         this.contactnum = contactnum;

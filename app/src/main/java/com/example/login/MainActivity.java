@@ -3,6 +3,7 @@ package com.example.login;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -28,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         utils = Utilities.getInstance();
     }
-
+    public void StartSignUp(View view){
+        Intent i = new Intent(MainActivity.this, SignupActivity.class);
+        startActivity(i);
+    }
 
 
     public void login(View view) {
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            Intent i = new Intent(MainActivity.this, AllPet.class);
+                            startActivity(i);
 
                         }
                         else {

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.Serializable;
 import java.text.BreakIterator;
 import java.util.List;
@@ -23,6 +25,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     private Context context;
 
 
+
     private final AdapterPet.ItemClickListener mClickListener = new ItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
@@ -30,8 +33,8 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
            Pet pet = mData.get(position);
             // upload restaurant data
             // goto details activity
-            Intent i = new Intent(context,PetDetailsActivity.class);
-            i.putExtra("rest", (Serializable)pet);
+            Intent i = new Intent(context, PetDetailsActivity.class);
+            i.putExtra("pet", pet);
             context.startActivity(i);
         }
     };
@@ -55,7 +58,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     public void onBindViewHolder(AdapterPet.ViewHolder holder, int position) {
         Pet pet = mData.get(position);
         holder.tvName.setText(pet.getCategory());
-       holder.ivPhoto.setImageDrawable((pet.getPhoto()));
+        Picasso.get().load(pet.getPhoto()).into(holder.ivPhoto);
     }
 
     // total number of rows

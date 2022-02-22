@@ -26,14 +26,20 @@ public class PetDetailsActivity extends AppCompatActivity {
         detailscategory.setText(pet.getCategory());
         detailscontactnum.setText(pet.getContactnum());
         Picasso.get().load(pet.getPhoto()).into(ivPhoto);
+        detailsage.setText(pet.getAge());
+        if(pet.getGender())
+            detailsgender.setText("female");
+        else detailsgender.setText("male");
     }
 
     private void connectComponents() {
-        detailsprice = findViewById(R.id.tvNameRestDetails);
-        detailsdescription = findViewById(R.id.tvDescriptionRestDetails);
-        detailslocation = findViewById(R.id.tvAddressRestDetails);
-        detailscategory = findViewById(R.id.tvCategoryRestDetails);
-        detailscontactnum = findViewById(R.id.tvPhoneRestDetails);
-        ivPhoto = findViewById(R.id.ivPhotoRestDetails);
+        detailsprice = findViewById(R.id.pricedetails);
+        detailsdescription = findViewById(R.id.descriptiondetails);
+        detailslocation = findViewById(R.id.locationdetails);
+        detailscategory = findViewById(R.id.categorydetails);
+        detailscontactnum = findViewById(R.id.contactnumdetails);
+        ivPhoto = findViewById(R.id.imageViewrow);
+        detailsage=findViewById(R.id.agedetails);
+        detailsgender=findViewById(R.id.genderdetails);
     }
 }
