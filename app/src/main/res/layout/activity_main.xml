@@ -44,7 +44,7 @@
 
         android:layout_marginBottom="65dp"
 
-        android:background="@empty"
+
         android:backgroundTint="@color/red"
         android:backgroundTintMode="add"
         android:onClick="login"

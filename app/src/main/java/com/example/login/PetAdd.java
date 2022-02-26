@@ -49,7 +49,9 @@ public class PetAdd extends AppCompatActivity {
     private FireBaseServices fbs;
     private RadioButton rd1, rd2;
     private Uri filePath;
-    StorageReference storageReference;
+    private StorageReference storageReference;
+    private String refAfterSuccessfullUpload = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

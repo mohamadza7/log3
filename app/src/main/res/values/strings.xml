@@ -3,4 +3,5 @@
     <string name="err_fields_empty">some fields are empty</string>
     <string name="radio_male">male</string>
     <string name="radio_female">female</string>
+    <string name="err_incorrect_user_password">password or email is not valid</string>
 </resources>

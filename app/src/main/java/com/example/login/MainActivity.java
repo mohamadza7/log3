@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (!utils.emailIsTrue(this, username) || !utils.validatePassword(this,password)) {
-            Toast.makeText(this, "Username or password is not valid!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.err_incorrect_user_password, Toast.LENGTH_SHORT).show();
             return;
         }
 

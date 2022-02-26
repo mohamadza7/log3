@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
             // goto details activity
             Intent i = new Intent(context, PetDetailsActivity.class);
             i.putExtra("pet", pet);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         }
     };

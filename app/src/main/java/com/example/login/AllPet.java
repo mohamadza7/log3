@@ -16,7 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class AllPet extends AppCompatActivity {
-    private RecyclerView rvAllRest;
+    private RecyclerView rvAllpet;
     AdapterPet adapter;
     FireBaseServices fbs;
     ArrayList<Pet> pets;
@@ -40,16 +40,13 @@ public class AllPet extends AppCompatActivity {
     private void readData() {
         fbs.getFire().collection("restaurants")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                pets.add(document.toObject(Pet.class));
-                            }
-                        } else {
-                            Log.e("AllPetActivity: readData()", "Error getting documents.", task.getException());
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            pets.add(document.toObject(Pet.class));
                         }
+                    } else {
+                        Log.e("AllPetActivity: readData()", "Error getting documents.", task.getException());
                     }
                 });
     }
