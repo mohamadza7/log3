@@ -6,18 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 
-class Utilities
-{
+class Utilities {
     private static Utilities instance;
 
-    public Utilities()
-    {
+    public Utilities() {
     }
 
-    public static Utilities getInstance()
-    {
-        if (instance == null)
-        {
+    public static Utilities getInstance() {
+        if (instance == null) {
             instance = new Utilities();
         }
 
@@ -25,7 +21,11 @@ class Utilities
     }
 
     public boolean emailIsTrue(AppCompatActivity activity, String e) {
-        String[] splitstring=e.split("@");
+        return true;
+    }
+
+
+      /*  String[] splitstring=e.split("@");
         if (splitstring.length!=2){
             Toast.makeText(activity, "username or email is false check again", Toast.LENGTH_SHORT).show();
             return false;
@@ -52,15 +52,18 @@ class Utilities
             Toast.makeText(activity, "username or email is false check again", Toast.LENGTH_SHORT).show();
             return false;
         }
+        /*
+        TODO: check validity
         for (int i=0;i<username.length();i++){
             char p= username.charAt(i);
             if (!(p>='a'& p<='z'||p>='A'& p<='Z'|| p=='_'|| p>='0'&p<='9' )){
                 Toast.makeText(activity, "username or email is false check again", Toast.LENGTH_SHORT).show();
                 return false;
             }
-        }
+        }*/
+
         // min 1 dot max 3
-        if (!(domain.split(".").length>=2 && domain.split(".").length<=5)) return false;
+      /*  if (!(domain.split(".").length>=2 && domain.split(".").length<=5)) return false;
         // first char letter underscore
         char firstd= domain.charAt(0);
         if (!(firstd>='a'& firstd<='z'|| firstd=='_'||firstd>='A'& firstd<='Z' )) {
@@ -86,10 +89,14 @@ class Utilities
             }
         }
         return true;
-    }
+    }*/
 
     public boolean validatePassword(AppCompatActivity activity,String password){
-        String password1= password.trim();
+        return true;
+
+    }
+}
+      /*  String password1= password.trim();
 
         if (!(password1.length()>=8 && password1.length()<=30)){
             Toast.makeText(activity, "password is not valid", Toast.LENGTH_SHORT).show();
@@ -109,6 +116,7 @@ class Utilities
             return false;
         }
         return true;
-    }
+    }/*
 
-}
+}*/
+

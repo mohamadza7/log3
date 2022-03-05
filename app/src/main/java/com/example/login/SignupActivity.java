@@ -40,13 +40,27 @@ public class SignupActivity extends AppCompatActivity {
 
         if (username.trim().isEmpty() || password.trim().isEmpty() || confirmpass.trim().isEmpty()) {
 
-            Toast.makeText(this, "Username or password is missing!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Username  is missing!", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!utils.emailIsTrue(this, username) || !utils.validatePassword(this, password)) {
-            Toast.makeText(this, "Username or password is not valid!", Toast.LENGTH_SHORT).show();
+
+        if (!utils.emailIsTrue(this, username) || !utils.validatePassword(this, password))
+        {
+            Toast.makeText(this, "password is false", Toast.LENGTH_SHORT).show();
             return;
         }
+        /*
+        if (!utils.emailIsTrue(this, username))  {
+            Toast.makeText(this, "email is false", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
+           if (!utils.validatePassword(this, password)) {
+               Toast.makeText(this, "password is false", Toast.LENGTH_SHORT).show();
+
+           }
+
+            Toast.makeText(this, " password is not valid!", Toast.LENGTH_SHORT).show();
+            return;
+        }*/
         if (!password.equals(confirmpass)) {
             Toast.makeText(this, "passwords do not match", Toast.LENGTH_SHORT).show();
             return;
