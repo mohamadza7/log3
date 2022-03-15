@@ -44,8 +44,7 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        if (!utils.emailIsTrue(this, username) || !utils.validatePassword(this, password))
-        {
+        if (!utils.emailIsTrue(this, username) || !utils.validatePassword(this, password)) {
             Toast.makeText(this, "password is false", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -67,8 +66,9 @@ public class SignupActivity extends AppCompatActivity {
         }
 
 
-
-            authsignup.createUserWithEmailAndPassword(username, password)
+        Intent i = new Intent(SignupActivity.this, AllPet.class);
+/*
+           authsignup.createUserWithEmailAndPassword(username, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -83,7 +83,9 @@ public class SignupActivity extends AppCompatActivity {
                             }
                         }
                     });
-
         }
     }
 
+*/
+    }
+}

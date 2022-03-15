@@ -3,6 +3,7 @@ package com.example.login;
 import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 enum PetCategory{
     dogs,cats,horses,birds
@@ -31,6 +32,9 @@ public class Pet implements Serializable {
         this.description = description;
     }
 
+    public Pet(String phone, String price, String location, String toString, String photo, boolean gender, String age, String description) {
+    }
+
     public String getContactnum() {
         return contactnum;
     }
@@ -46,6 +50,7 @@ public class Pet implements Serializable {
 
 
     public String getCategory() {
+
         return String.valueOf(category);
     }
 

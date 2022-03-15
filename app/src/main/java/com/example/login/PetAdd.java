@@ -120,7 +120,7 @@ public class PetAdd extends AppCompatActivity {
     public void add(View view) {
         // check if any field is empty
         String location, description, age, phone, kind, photo, price;
-        boolean gender = false;
+        boolean Gender =gender;
         location = etlocation.getText().toString();
         description = etdiscreption.getText().toString();
         price = etprice.toString();
@@ -141,7 +141,7 @@ public class PetAdd extends AppCompatActivity {
             return;
         }
 
-        Pet pet = new Pet(phone, price, location, PetCategory.valueOf(kind), photo, gender, age, description);
+        Pet pet = new Pet(phone, price, location, kind, photo, gender, age, description);
         fbs.getFire().collection("restaurants")
                 .add(pet)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
