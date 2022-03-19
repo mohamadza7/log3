@@ -22,27 +22,21 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
 
     private List<Pet> mData;
     private LayoutInflater mInflater;
-
     private Context context;
 
-
-
-    private final AdapterPet.ItemClickListener mClickListener = new ItemClickListener() {
+    private AdapterPet.ItemClickListener mClickListener = new ItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            // get restaurant data
-           Pet pet = mData.get(position);
-            // upload restaurant data
-            // goto details activity
-            Intent i = new Intent(context, PetDetailsActivity.class);
-            i.putExtra("pet", pet);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Pet rest = mData.get(position);
+            Intent i = new Intent(context,PetDetailsActivity.class);
+            i.putExtra("rest", rest);
+
             context.startActivity(i);
         }
     };
 
-
-   AdapterPet(Context context, List<Pet> data) {
+    // data is passed into the constructor
+    AdapterPet(Context context, List<Pet> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context = context;
@@ -58,9 +52,9 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(AdapterPet.ViewHolder holder, int position) {
-        Pet pet = mData.get(position);
-        holder.tvName.setText(pet.getCategory());
-        Picasso.get().load(pet.getPhoto()).into(holder.ivPhoto);
+        Pet rest = mData.get(position);
+        holder.tvName.setText(rest.getCategory());
+        Picasso.get().load(rest.getPhoto()).into(holder.ivPhoto);
     }
 
     // total number of rows
@@ -70,7 +64,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     }
 
 
-    // stores and recycles views as they are scrolled off screen
+    // stores and recycles views as they are scrol    led off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvName;
         ImageView ivPhoto;
@@ -89,16 +83,16 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     }
 
     // convenience method for getting data at click position
-   Pet getItem(int id) {
+    Pet getItem(int id) {
         return mData.get(id);
     }
 
     // allows clicks events to be caught
     /*
-    void setClickListener(AdapterRestaurant.ItemClickListener itemClickListener) {
+    void setClickListener(AdapterPet.ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
-    }*/
-
+    }
+**/
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);

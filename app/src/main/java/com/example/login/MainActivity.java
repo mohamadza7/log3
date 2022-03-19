@@ -69,4 +69,18 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
+    public void gotoSignup(View view) {
+        Intent i = new Intent(this, SignupActivity.class);
+        startActivity(i);
+    }
+
+    public void gotoAddRest(View view) {
+        Intent i = new Intent(this, PetAdd.class);
+        startActivity(i);
+    }
+
+    public void gotoAllRests(View view) {
+        Intent i = new Intent(this, AllPet.class);
+        startActivity(i);
+    }
 }
