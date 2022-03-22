@@ -31,6 +31,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -51,6 +52,7 @@ public class PetAdd extends AppCompatActivity {
     private Uri filePath;
     private StorageReference storageReference;
     private String refAfterSuccessfullUpload = null;
+    private String downloadableURL = "";
 
 
     @Override
@@ -129,7 +131,7 @@ public class PetAdd extends AppCompatActivity {
         kind = spkind.getSelectedItem().toString();
         if (ivPhoto.getDrawable() == null)
             photo = "no_image";
-        else photo = storageReference.getDownloadUrl().toString();
+        else photo = downloadableURL;
         if (!rd1.isChecked() && !rd2.isChecked()) {
             Toast.makeText(this, R.string.err_fields_empty, Toast.LENGTH_SHORT).show();
             return;
@@ -170,17 +172,17 @@ public class PetAdd extends AppCompatActivity {
         if (requestCode == 40) {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
-                    try {
+
                         filePath = data.getData();
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                    Picasso.get().load(filePath).into(ivPhoto);
+
                         ivPhoto.setBackground(null);
-                        ivPhoto.setImageBitmap(bitmap);
+
                         uploadImage();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
+
                 }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
+                } else if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
             }
         }
@@ -196,11 +198,12 @@ public class PetAdd extends AppCompatActivity {
             progressDialog.show();
 
             // Defining the child of storageReference
+            String fileNameStr = filePath.toString().substring(filePath.toString().lastIndexOf("/")+1);
             StorageReference ref
                     = storageReference
                     .child(
                             "images/"
-                                    + UUID.randomUUID().toString());
+                                    + filePath.getLastPathSegment());
 
             // adding listeners on upload
             // or failure of image
@@ -220,6 +223,7 @@ public class PetAdd extends AppCompatActivity {
                                                     "Image Uploaded!!",
                                                     Toast.LENGTH_SHORT)
                                             .show();
+                                    refAfterSuccessfullUpload = ref.toString();
                                 }
                             })
 

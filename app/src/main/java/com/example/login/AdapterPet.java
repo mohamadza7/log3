@@ -31,6 +31,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
             Intent i = new Intent(context,PetDetailsActivity.class);
             i.putExtra("rest", rest);
 
+
             context.startActivity(i);
         }
     };
