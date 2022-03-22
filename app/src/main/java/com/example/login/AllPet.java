@@ -29,16 +29,23 @@ public class AllPet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_pet);
 
+        RecyclerView recyclerView = findViewById(R.id.rvRestsAllRest);
         fbs = FireBaseServices.getInstance();
         pets = new ArrayList<Pet>();
         readData();
         myCallback = new MyCallBack() {
             @Override
             public void onCallback(List<Pet> restsList) {
-                RecyclerView recyclerView = findViewById(R.id.rvpetsALLPET);
-                recyclerView.setLayoutManager(new LinearLayoutManager(AllPet.this));
-                adapter = new AdapterPet(AllPet.this, pets);
-                recyclerView.setAdapter(adapter);
+
+                try {
+                    recyclerView.setLayoutManager(new LinearLayoutManager(AllPet.this));
+                    adapter = new AdapterPet(AllPet.this, pets);
+                    recyclerView.setAdapter(adapter);
+                }
+                catch(Exception ex)
+                {
+                    Log.e("onCallBack: ", ex.getMessage());
+                }
             }
         };
         // set up the RecyclerView
