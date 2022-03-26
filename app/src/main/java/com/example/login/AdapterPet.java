@@ -24,7 +24,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     private LayoutInflater mInflater;
     private Context context;
 
-    private AdapterPet.ItemClickListener mClickListener = new ItemClickListener() {
+    private final AdapterPet.ItemClickListener mClickListener = new ItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
             Pet rest = mData.get(position);

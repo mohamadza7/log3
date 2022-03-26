@@ -23,6 +23,7 @@ import android.widget.RadioGroup;
 
 import android.view.View.OnClickListener;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,10 +42,11 @@ public class PetAdd extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button btnDisplay;
-    private boolean gender;
+    private String gender;
 
     private static final String TAG = "PetAddActivity";
-    private EditText etlocation, etdiscreption, etage, etPhone, etprice, etgender;
+    private EditText etlocation, etdiscreption, etage, etPhone, etprice;
+    private TextView etgender;
     private Spinner spkind;
     private ImageView ivPhoto;
     private FireBaseServices fbs;
@@ -59,33 +61,27 @@ public class PetAdd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_pet_add);
-        addListenerOnButton();
+       //* addListenerOnButton();
         getSupportActionBar().hide();
         connectComponents();
     }
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
 
-    private void addListenerOnButton() {
-        radioGroup = (RadioGroup) findViewById(R.id.radio);
-        btnDisplay = (Button) findViewById(R.id.btnDisplay);
-
-        btnDisplay.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                // get selected radio button from radioGroup
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-
-                // find the radiobutton by returned id
-                radioButton = (RadioButton) findViewById(selectedId);
-
-                Toast.makeText(PetAdd.this,
-                        radioButton.getText(), Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
-
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radiomale:
+                if (checked)
+                    gender="male";
+                    // Pirates are the best
+                    break;
+            case R.id.radiofemale:
+                if (checked)
+                    gender="female";
+                    // Ninjas rule
+                    break;
+        }
     }
 
     private void connectComponents() {
@@ -102,27 +98,13 @@ public class PetAdd extends AppCompatActivity {
         RadioGroup rg = (RadioGroup) findViewById(R.id.radio);
         btnDisplay = findViewById(R.id.btnDisplay);
 
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioFemale:
-                        gender = true;
-
-                        break;
-                    case R.id.radioMale:
-                        gender = false;
-                        break;
-
-                }
-            }
-        });
     }
 
 
     public void add(View view) {
         // check if any field is empty
         String location, description, age, phone, kind, photo, price;
-        boolean Gender =gender;
+       String Gender =gender;
         location = etlocation.getText().toString();
         description = etdiscreption.getText().toString();
         price = etprice.toString();
@@ -143,7 +125,7 @@ public class PetAdd extends AppCompatActivity {
             return;
         }
 
-        Pet pet = new Pet(phone, price, location, kind, photo, gender, age, description);
+        Pet pet = new Pet(phone, price, location, PetCategory.valueOf(kind)  , photo, gender, age, description);
         fbs.getFire().collection("restaurants")
                 .add(pet)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

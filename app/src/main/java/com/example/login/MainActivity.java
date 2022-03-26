@@ -18,16 +18,21 @@ public class MainActivity extends AppCompatActivity {
     private EditText etUsername, etPassword;
     private FirebaseAuth auth;
     private Utilities utils;
+    private FireBaseServices fbs;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+    }
+    private void connectComponents(){
         etUsername=findViewById(R.id.username1);
         etPassword=findViewById(R.id.password1);
         auth=FirebaseAuth.getInstance();
         utils = Utilities.getInstance();
+        fbs= FireBaseServices.getInstance();
     }
     public void StartSignUp(View view){
         Intent i = new Intent(MainActivity.this, SignupActivity.class);
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (!utils.emailIsTrue(this, username) || !utils.validatePassword(this,password)) {
+        if (!utils.validateEmail( username) || !utils.validatePassword(password)) {
             Toast.makeText(this, R.string.err_incorrect_user_password, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -74,12 +79,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void gotoAddRest(View view) {
+    public void gotoAddPet(View view) {
         Intent i = new Intent(this, PetAdd.class);
         startActivity(i);
     }
 
-    public void gotoAllRests(View view) {
+    public void gotoAllPets(View view) {
         Intent i = new Intent(this, AllPet.class);
         startActivity(i);
     }

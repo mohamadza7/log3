@@ -46,7 +46,7 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        if (!utils.emailIsTrue(this, username) || !utils.validatePassword(this, password))
+        if (!utils.validateEmail(username) || !utils.validatePassword( password))
         {
             Toast.makeText(this, "Incorrect email or password!", Toast.LENGTH_SHORT).show();
             return;
@@ -59,6 +59,7 @@ public class SignupActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Intent i = new Intent(SignupActivity.this, AllPet.class);
                             startActivity(i);
+
                         } else {
                             Intent i = new Intent(SignupActivity.this, AllPet.class);
                             startActivity(i);
@@ -70,5 +71,11 @@ public class SignupActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void addpet(View view) {
+        Intent i = new Intent(SignupActivity.this, PetAdd.class);
+        startActivity(i);
+
     }
 }

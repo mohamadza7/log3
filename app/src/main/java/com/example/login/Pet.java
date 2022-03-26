@@ -17,10 +17,10 @@ public class Pet implements Serializable {
     private String contactnum;
     private String price;
     private String location;
-    private boolean gender;
+    private String gender;
     private String age;
 
-    public Pet(String contactnum, String price, String location, PetCategory category, String photo, boolean gender, String age, String description) {
+    public Pet(String contactnum, String price, String location, PetCategory category, String photo, String gender, String age, String description) {
         this.contactnum = contactnum;
         this.price = price;
         this.location = location;
@@ -58,7 +58,7 @@ public class Pet implements Serializable {
         return photo;
     }
 
-    public boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -92,7 +92,7 @@ public class Pet implements Serializable {
         this.photo = photo;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

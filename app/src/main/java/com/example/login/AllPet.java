@@ -29,46 +29,50 @@ public class AllPet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_pet);
 
-        RecyclerView recyclerView = findViewById(R.id.rvRestsAllRest);
         fbs = FireBaseServices.getInstance();
         pets = new ArrayList<Pet>();
         readData();
         myCallback = new MyCallBack() {
             @Override
             public void onCallback(List<Pet> restsList) {
-
-                try {
-                    recyclerView.setLayoutManager(new LinearLayoutManager(AllPet.this));
-                    adapter = new AdapterPet(AllPet.this, pets);
-                    recyclerView.setAdapter(adapter);
-                }
-                catch(Exception ex)
-                {
-                    Log.e("onCallBack: ", ex.getMessage());
-                }
+                RecyclerView recyclerView = findViewById(R.id.rvRestsAllRest);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                adapter = new AdapterPet(getApplicationContext(), pets);
+                recyclerView.setAdapter(adapter);
             }
         };
-        // set up the RecyclerView
 
+
+        // set up the RecyclerView
+        /*
+        RecyclerView recyclerView = findViewById(R.id.rvRestsAllRest);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new AdapterRestaurant(this, rests);
+        recyclerView.setAdapter(adapter);*/
     }
 
     private void readData() {
         try {
 
-
-            fbs.getFire().collection("pets")
+            fbs.getFire().collection("restaurants")
                     .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                pets.add(document.toObject(Pet.class));
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    pets.add(document.toObject(Pet.class));
+                                }
+
+                                myCallback.onCallback(pets);
+                            } else {
+                                Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
                             }
-                            myCallback.onCallback(pets);
-                        } else {
-                            Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
                         }
                     });
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Toast.makeText(getApplicationContext(), "error reading!" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }

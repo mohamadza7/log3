@@ -27,9 +27,7 @@ public class PetDetailsActivity extends AppCompatActivity {
         detailscontactnum.setText(pet.getContactnum());
         Picasso.get().load(pet.getPhoto()).into(ivPhoto);
         detailsage.setText(pet.getAge());
-        if(pet.getGender())
-            detailsgender.setText("female");
-        else detailsgender.setText("male");
+       detailsgender.setText(pet.getGender());
     }
 
     private void connectComponents() {

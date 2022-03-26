@@ -5,9 +5,9 @@
     android:id="@+id/username"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:background="@color/black"
     android:backgroundTint="@color/black"
-    android:background="@color/black">
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/username1"
@@ -39,29 +39,50 @@
     <Button
         android:id="@+id/btnlogin"
         android:layout_width="324dp"
-        android:layout_height="48dp"
-
-
-        android:layout_marginBottom="65dp"
-
-
+        android:layout_height="0dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginBottom="268dp"
         android:backgroundTint="@color/red"
         android:backgroundTintMode="add"
         android:onClick="login"
         android:text="log in"
-        app:layout_constraintBottom_toTopOf="@+id/btnsignin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnsignin"
         android:layout_width="318dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="246dp"
         android:backgroundTint="@color/red"
-        android:text="sign up"
         android:onClick="StartSignUp"
+        android:text="sign up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/addpetmain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="37dp"
+        android:text="Add pet"
+        android:onClick="gotoAddPet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnlogin"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/allpetmain"
+        android:onClick="gotoAllPets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="36dp"
+        android:text="All pets"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
