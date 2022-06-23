@@ -97,6 +97,8 @@ public class PetAdd extends AppCompatActivity {
         storageReference = fbs.getStorage().getReference();
         RadioGroup rg = (RadioGroup) findViewById(R.id.radio);
         btnDisplay = findViewById(R.id.btnDisplay);
+        rd1=findViewById(R.id.radiofemale);
+        rd2=findViewById(R.id.radiomale);
 
     }
 

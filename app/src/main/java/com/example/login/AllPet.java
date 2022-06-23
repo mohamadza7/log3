@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,39 +44,60 @@ public class AllPet extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
             }
         };
-
-
-        // set up the RecyclerView
-        /*
-        RecyclerView recyclerView = findViewById(R.id.rvRestsAllRest);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new AdapterRestaurant(this, rests);
-        recyclerView.setAdapter(adapter);*/
     }
 
-    private void readData() {
-        try {
-
-            fbs.getFire().collection("restaurants")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    pets.add(document.toObject(Pet.class));
-                                }
-
-                                myCallback.onCallback(pets);
-                            } else {
-                                Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
-                            }
-                        }
-                    });
+        public boolean onCreateOptionsMenu ( Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.toolbar, menu);
+            return true;
         }
-        catch (Exception e)
+
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item)
         {
-            Toast.makeText(getApplicationContext(), "error reading!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            switch (item.getItemId()) {
+                //case R.id.miSearch:
+                // User chose the "Settings" item, show the app settings UI...
+                //return true;
+
+                case R.id.miProfile:
+                    // User chose the "Favorite" action, mark the current item
+                    // as a favorite...
+                    return true;
+
+                case R.id.miSettings:
+
+                    return true;
+
+                default:
+                    // If we got here, the user's action was not recognized.
+                    // Invoke the superclass to handle it.
+                    return super.onOptionsItemSelected(item);
+
+            }
         }
-    }
+
+        public void readData() {
+            try {
+
+                fbs.getFire().collection("pets")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        pets.add(document.toObject(Pet.class));
+                                    }
+
+                                    myCallback.onCallback(pets);
+                                } else {
+                                    Log.e("AllPet: readData()", "Error getting documents.", task.getException());
+                                }
+                            }
+                        });
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "error reading!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
 }
