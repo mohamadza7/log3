@@ -54,7 +54,7 @@ public class AdapterPet extends RecyclerView.Adapter<AdapterPet.ViewHolder> {
     @Override
     public void onBindViewHolder(AdapterPet.ViewHolder holder, int position) {
         Pet rest = mData.get(position);
-        holder.tvName.setText(rest.getCategory());
+        holder.tvName.setText(rest.getCategory().toString());
         Picasso.get().load(rest.getPhoto()).into(holder.ivPhoto);
     }
 

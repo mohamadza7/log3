@@ -41,21 +41,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void login(View view) {
-        String username= etUsername.getText().toString();
-        String password= etPassword.getText().toString();
+        String username = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
 
         if (username.trim().isEmpty() || password.trim().isEmpty())
         {
-            Toast.makeText(this, "Username or password is missing!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.err_fields_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!utils.validateEmail( username) || !utils.validatePassword(password)) {
+        if (!utils.validateEmail(username) || !utils.validatePassword(password))
+        {
             Toast.makeText(this, R.string.err_incorrect_user_password, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        auth.signInWithEmailAndPassword(username, password)
+        fbs.getAuth().signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -63,16 +64,11 @@ public class MainActivity extends AppCompatActivity {
                             Intent i = new Intent(MainActivity.this, AllPet.class);
                             startActivity(i);
 
-                        }
-                        else {
-
-
-                            Toast.makeText(MainActivity.this, "Username or password is empty!", Toast.LENGTH_SHORT).show();
-                            return;
+                        } else {
+                            Toast.makeText(MainActivity.this, R.string.err_incorrect_user_password, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
     }
     public void gotoSignup(View view) {
         Intent i = new Intent(this, SignupActivity.class);
@@ -88,4 +84,6 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, AllPet.class);
         startActivity(i);
     }
+
+
 }

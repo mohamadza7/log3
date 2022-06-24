@@ -74,12 +74,12 @@ public class PetAdd extends AppCompatActivity {
             case R.id.radiomale:
                 if (checked)
                     gender="male";
-                    // Pirates are the best
+
                     break;
             case R.id.radiofemale:
                 if (checked)
                     gender="female";
-                    // Ninjas rule
+
                     break;
         }
     }
@@ -113,22 +113,24 @@ public class PetAdd extends AppCompatActivity {
         age = etage.getText().toString();
         phone = etPhone.getText().toString();
         kind = spkind.getSelectedItem().toString();
-        if (ivPhoto.getDrawable() == null)
+       // if (ivPhoto.getDrawable() == null)
+           // photo = "no_image";
+        if (refAfterSuccessfullUpload == null)
             photo = "no_image";
-        else photo = downloadableURL;
+        else photo = refAfterSuccessfullUpload;
         if (!rd1.isChecked() && !rd2.isChecked()) {
             Toast.makeText(this, R.string.err_fields_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (location.trim().isEmpty() || description.trim().isEmpty() || age.trim().isEmpty() ||
-                phone.trim().isEmpty() || kind.trim().isEmpty() || photo.trim().isEmpty()) {
+                phone.trim().isEmpty() || kind.trim().isEmpty() ) {
             Toast.makeText(this, R.string.err_fields_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
         Pet pet = new Pet(phone, price, location, PetCategory.valueOf(kind)  , photo, gender, age, description);
-        fbs.getFire().collection("restaurants")
+        fbs.getFire().collection("pets")
                 .add(pet)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -242,5 +244,10 @@ public class PetAdd extends AppCompatActivity {
                                 }
                             });
         }
+    }
+
+    public void gotoAllPets2(View view) {
+        Intent i = new Intent(this, AllPet.class);
+        startActivity(i);
     }
 }

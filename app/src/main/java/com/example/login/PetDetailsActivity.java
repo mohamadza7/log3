@@ -23,7 +23,7 @@ public class PetDetailsActivity extends AppCompatActivity {
         detailsprice.setText(pet.getPrice());
         detailsdescription.setText(pet.getDescription());
        detailslocation.setText(pet.getLocation());
-        detailscategory.setText(pet.getCategory());
+        detailscategory.setText(pet.getCategory().toString());
         detailscontactnum.setText(pet.getContactnum());
         Picasso.get().load(pet.getPhoto()).into(ivPhoto);
         detailsage.setText(pet.getAge());

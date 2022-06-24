@@ -49,9 +49,9 @@ public class Pet implements Serializable {
 
 
 
-    public String getCategory() {
+    public PetCategory getCategory() {
 
-        return String.valueOf(category);
+        return category;
     }
 
     public String getPhoto() {

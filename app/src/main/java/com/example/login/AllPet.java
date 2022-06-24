@@ -1,15 +1,18 @@
 package com.example.login;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,14 +41,21 @@ public class AllPet extends AppCompatActivity {
         myCallback = new MyCallBack() {
             @Override
             public void onCallback(List<Pet> restsList) {
-                RecyclerView recyclerView = findViewById(R.id.rvRestsAllRest);
+                RecyclerView recyclerView = findViewById(R.id.rvpetsALLPET);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 adapter = new AdapterPet(getApplicationContext(), pets);
                 recyclerView.setAdapter(adapter);
             }
         };
-    }
 
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setTitle("  PetApp");
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+       }
+
+        @Override
         public boolean onCreateOptionsMenu ( Menu menu) {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.toolbar, menu);
@@ -68,6 +78,8 @@ public class AllPet extends AppCompatActivity {
                 case R.id.miSettings:
 
                     return true;
+                case R.id.misignout:
+                    fbs.getAuth().signOut();
 
                 default:
                     // If we got here, the user's action was not recognized.
@@ -79,7 +91,6 @@ public class AllPet extends AppCompatActivity {
 
         public void readData() {
             try {
-
                 fbs.getFire().collection("pets")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -96,8 +107,14 @@ public class AllPet extends AppCompatActivity {
                                 }
                             }
                         });
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Toast.makeText(getApplicationContext(), "error reading!" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
+
+    public void gotoAddPet(View view) {
+        Intent i = new Intent(this, PetAdd.class);
+        startActivity(i);
+    }
 }
